@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A_S_K Store | المتجر البرمجي الأول</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --bg-main: #0B0E17;
+            --bg-card: #131927;
+            --bg-card-hover: #1E293B;
+            --accent-purple: #7C3AED;
+            --accent-purple-light: #A78BFA;
+            --accent-cyan: #06B6D4;
+            --text-white: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --border-color: #1F2937;
+            --border-highlight: rgba(124, 58, 237, 0.4);
+            --font-family: 'Tajawal', sans-serif;
+            --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 4px;
+        }
+
+        /* Header / Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 14, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--accent-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-white);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-purple);
+            color: white;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #6D28D9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-white);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-purple);
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 6% 60px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-purple-light);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-card-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+        }
+
+        .preview-badge {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.2);
+            color: var(--accent-purple-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 60px 6%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: right;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-highlight);
+        }
+
+        .feature-box i {
+            font-size: 2.2rem;
+            color: var(--accent-purple-light);
+            margin-bottom: 18px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 60px 6%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            border-color: var(--border-highlight);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-purple-light);
+            font-size: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .product-price-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .price-text {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--text-white);
+        }
+
+        .price-text span {
+            font-size: 0.85rem;
+            color: var(--accent-purple-light);
+            font-weight: 700;
+        }
+
+        /* Custom Banner */
+        .custom-banner {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(6, 182, 212, 0.15));
+            border: 1px solid var(--border-highlight);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .custom-banner h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .custom-banner p {
+            color: var(--text-muted);
+        }
+
+        /* FAQ Accordion */
+        .faq-section {
+            padding: 60px 6%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-muted);
+            display: none;
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
+        }
+
+        /* Contact & Footer */
+        footer {
+            background: #070A12;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 6% 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 50px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p, .footer-col li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .footer-col li a:hover {
+            color: var(--accent-purple-light);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-code" style="color: var(--accent-purple-light);"></i>
+            A_S_K <span>Store</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">الرئيسية</a></li>
+            <li><a href="#features">الخدمات</a></li>
+            <li><a href="#products">الأنظمة والمواقع</a></li>
+            <li><a href="#faq">الأسئلة الشائعة</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="https://wa.me/218931803680" target="_blank" class="btn btn-primary">
+                <i class="fa-brands fa-whatsapp"></i> تواصل عبر الواتساب
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-text" data-aos="fade-left">
+            <h1>وجودك على الإنترنت أصل ومقوم لـ <span>نشاطك التجاري</span></h1>
+            <p>نقدم أفضل المنظومات والمواقع التفاعلية لإدارة أعمالك البرمجية بكل احترافية، مخصصة ومصممة خصيصاً لتناسب احتياجات سوق العمل بأسهل وأعلى معايير الأمان.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary"><i class="fa-solid fa-store"></i> تصفح الخدمات والأسعار</a>
+                <a href="https://wa.me/218931803680" target="_blank" class="btn btn-outline"><i class="fa-brands fa-whatsapp"></i> طلب استشارة مجانية</a>
+            </div>
+        </div>
+        <div class="hero-card-preview" data-aos="fade-right">
+            <span class="preview-badge">A_S_K Store Platform</span>
+            <h3 style="margin-bottom: 15px; font-size: 1.4rem;">منظومة وتصميم متكامل</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">ربط سريع للبيانات، دعم مختلف النشاطات التجارية والصحية والتعليمية، مع لوحة تحكم سهلة الاستخدام.</p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <span>الحالة العامة</span>
+                <span style="color: #10B981; font-weight: 700;"><i class="fa-solid fa-circle-check"></i> متصل 100%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Why Choose Us -->
+    <section class="features-section" id="features">
+        <h2 class="section-title" data-aos="fade-up">لأن مشروعك يستحق أن يكون A_S_K Store في القمة</h2>
+        <div class="features-grid">
+            <div class="feature-box" data-aos="fade-up">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>سرعة في التنفيذ والرفع</h3>
+                <p>إعداد الملفات وتهيئة السيرفرات وقواعد البيانات بسرعة وكفاءة عالية.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>أمان وحماية مستمرة</h3>
+                <p>حماية بياناتك والمنظومة بأفضل آليات التشفير ضد الأخطاء والثغرات.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-headset"></i>
+                <h3>دعم فني وتواصل مباشر</h3>
+                <p>فريقنا معك دائماً للإجابة على استفساراتك وتحديث منظومتك باستمرار.</p>
+            </div>
+            <div class="feature-box" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-coins"></i>
+                <h3>أسعار مناسبة بالدينار الليبي</h3>
+                <p>تكلفة واضحة ومناسبة بالعملة المحلية (د.ل) دون أي رسوم خفية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products / Services Grid -->
+    <section class="products-section" id="products">
+        <h2 class="section-title" data-aos="fade-up">مواقع وخدمات وتصميمات تشمل احتياجك في سوق العمل</h2>
+        <div class="products-grid">
+
+            <!-- Card 1 -->
+            <div class="product-card" data-aos="fade-up">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <h3>منظومة إدارة المحلات والمواد الغذائية</h3>
+                    </div>
+                    <p>منظومة متكاملة لإدارة المبيعات، المخازن، طباعة الفواتير وقراءة البار كود وتقارير الأرباح.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">1,250 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20منظومة%20المحلات%20والمواد%20الغذائية" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-hospital-user"></i></div>
+                        <h3>منظومة العيادات والمراكز الصحية</h3>
+                    </div>
+                    <p>إدارة ملفات المرضى، تنظيم المواعيد والانتظار، حسابات الأطباء، والروشتات الإلكترونية.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">1,850 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20منظومة%20العيادات%20والمراكز%20الصحية" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>منظومة إدارية للمدارس والمعاهد</h3>
+                    </div>
+                    <p>متابعة الطلاب، الجداول الدراسية، تسجيل الغياب والحضور، وإصدار شهادات النتائج تلقائياً.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">1,600 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20منظومة%20المدارس%20والمعاهد" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="product-card" data-category="sites" data-aos="fade-up">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-building"></i></div>
+                        <h3>موقع بروفايل للشركات والمؤسسات</h3>
+                    </div>
+                    <p>عرض الخدمات، معرض الأعمال، التعريف بالشركة، متجاوب بالكامل مع شاشات الهاتف المحمول.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">850 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20موقع%20بروفايل%20للشركة" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="product-card" data-category="sites" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-user-gear"></i></div>
+                        <h3>موقع شخصي للأفراد والمستقلين CV</h3>
+                    </div>
+                    <p>سيرة ذاتية تفاعلية تعرض مهاراتك، مشاريعك البرمجية، ووسائل التواصل المباشرة معك.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">450 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20موقع%20شخصي%20CV" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="product-header">
+                        <div class="product-icon"><i class="fa-solid fa-dumbbell"></i></div>
+                        <h3>منظومة الأنشطة والصالات الرياضية</h3>
+                    </div>
+                    <p>إدارة باقات الاشتراك، تواريخ الانتهاء، التنبيهات والتقارير المالية اليومية للمركز.</p>
+                </div>
+                <div class="product-price-bar">
+                    <div class="price-text">1,100 <span>د.ل</span></div>
+                    <a href="https://wa.me/218931803680?text=أريد%20طلب%20منظومة%20الأنشطة%20والصالات" target="_blank" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> طلب الآن</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Custom Banner -->
+    <section class="custom-banner" data-aos="zoom-in">
+        <div>
+            <h2>أثر موقعك وتصميمك يمتد لما بعد!</h2>
+            <p>هل تود تصميم موقع أو منظومة مخصصة وفق شروط ومتطلبات خاصة بك؟ نحن هنا لمساعدتك.</p>
+        </div>
+        <a href="https://wa.me/218931803680?text=أريد%20استشارة%20لتصميم%20منظومة%20خاصة" target="_blank" class="btn btn-primary" style="background: white; color: var(--bg-main);">
+            <i class="fa-brands fa-whatsapp"></i> تواصل معنا الآن
+        </a>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-section" id="faq" data-aos="fade-up">
+        <h2 class="section-title">مواقفك مع النظام تفاعلية تماماً</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                كيف يتم تسليم وتأكيد الطلب؟ <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                بمجرد تواصلك عبر الواتساب واختيار المنظومة، يتم رفع النظام على الاستضافة أو تثبيته على أجهزتك مباشرة وتزويدك بكافة التراخيص وملفات قاعدة البيانات.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                هل توجد خيارات لتعديل المنظومة؟ <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                نعم، يمكننا تعديل الهيكلية وإضافة أقسام خاصة وفق طلبك لتلبي احتياجات نشاطك تماماً.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                طرق الدفع المدعومة؟ <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                ندعم جميع وسائل الدفع المحلية بالدينار الليبي (د.ل) مثل: سداد، تداول، التحويلات البنكية المباشرة، والدفع النقدي.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 15px;">
+                    <i class="fa-solid fa-code"></i> A_S_K <span>Store</span>
+                </a>
+                <p>منصة A_S_K Store لتطوير مواقع الويب والمنظومات الإدارية والتجارية في ليبيا بأحدث التقنيات البرمجية.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/218931803680" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#hero">الرئيسية</a></li>
+                    <li><a href="#features">الخدمات</a></li>
+                    <li><a href="#products">المعروضات والأسعار</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>الخدمات البرمجية</h4>
+                <ul>
+                    <li><a href="#">منظومات المحلات التجارية</a></li>
+                    <li><a href="#">منظومات العيادات والصحة</a></li>
+                    <li><a href="#">منظومات المدارس والتعليم</a></li>
+                    <li><a href="#">مواقع الشركات والأفراد</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>تواصل معنا</h4>
+                <p><i class="fa-solid fa-location-dot"></i> ليبيا</p>
+                <p><i class="fa-solid fa-phone"></i> +218 93 180 3680</p>
+                <p><i class="fa-solid fa-envelope"></i> info@ask-store.ly</p>
+            </div>
+        </div>
+        <div class="copyright">
+            جميع الحقوق محفوظة &copy; 2026 - A_S_K Store | تم التطوير بواسطة مؤنس أبوالهول
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
